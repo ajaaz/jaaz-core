@@ -32,7 +32,7 @@ public class RootServlet extends HttpServlet {
 		String url = request.getRequestURI().substring(request.getContextPath().length());
 		if(!url.startsWith("/portal"))
 		{
-			response.sendRedirect(request.getContextPath()+"/portal");
+			response.sendRedirect("/portal");
 			return;
 		}
 		renderPage(request,response);
