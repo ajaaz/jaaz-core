@@ -1,6 +1,8 @@
 package eu.jaaz.portal.core;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,8 +28,14 @@ public class RootServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		String url = request.getRequestURI().substring(request.getContextPath().length());
+		if(!url.startsWith("/portal"))
+		{
+			response.sendRedirect(request.getContextPath()+"/portal");
+			return;
+		}
+		renderPage(request,response);
 	}
 
 	/**
@@ -38,4 +46,9 @@ public class RootServlet extends HttpServlet {
 		doGet(request, response);
 	}
 
+	void renderPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
+		request.setAttribute("skin", "default");
+		request.getRequestDispatcher("/skin/default/layout.jsp").include(request, response);
+	}
 }
