@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class MainServlet
  */
-@WebServlet("/")
+
 public class RootServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -30,12 +30,17 @@ public class RootServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String url = request.getRequestURI().substring(request.getContextPath().length());
-		if(!url.startsWith("/portal"))
+		if(url.equals("/"))
 		{
 			response.sendRedirect("/portal");
 			return;
 		}
-		renderPage(request,response);
+		if(url.startsWith("/portal"))
+			renderPage(request,response);
+		else
+		{
+			request.getRequestDispatcher(url).include(request, response);	
+		}
 	}
 
 	/**

@@ -1,0 +1,5 @@
+<Sites>
+	<Site id="jaazy" default="true" domain="jaazy.co">
+		<domain name="jaazy.x.com"/>
+	</Site>
+</Sites>
