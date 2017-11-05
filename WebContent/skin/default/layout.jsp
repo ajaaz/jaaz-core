@@ -11,6 +11,7 @@
     		<jsp:include page="/skin/${skin}/body.jsp"></jsp:include>
     	</div>
     </div>	
+    ${site}
     <jsp:include page="/skin/${skin}/bottom.jsp"></jsp:include>        
   	
   	<script src="/skin/default/js/jquery.min.js"></script>

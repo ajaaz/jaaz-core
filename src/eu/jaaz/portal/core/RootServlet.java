@@ -36,10 +36,20 @@ public class RootServlet extends HttpServlet {
 			return;
 		}
 		if(url.startsWith("/portal"))
-			renderPage(request,response);
-		else
 		{
-			request.getRequestDispatcher(url).include(request, response);	
+			SiteManager manager = SiteManager.getSiteManager(request.getSession().getServletContext());
+			Site site = manager.lookup(request.getServerName());
+			request.setAttribute("site", site);
+			
+			if(!"DEV".equals(System.getProperty("jaaz.mode"))&&!request.getServerName().equals(site.getDomain()))
+			{
+				String redirect = request.getScheme()+"://"+site.getDomain()+"/"+
+						request.getRequestURI().substring(request.getContextPath().length());
+				response.sendRedirect(redirect);
+				return;
+			}
+			
+			renderPage(request,response);
 		}
 	}
 
