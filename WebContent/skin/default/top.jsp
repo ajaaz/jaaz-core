@@ -17,7 +17,7 @@
 
 					<div class="col-md-6">
 						<div class="top-right">
-							Login | Register
+							<user-menu></user-menu>
 						</div>
 					</div>
 
@@ -59,3 +59,4 @@
 		</div>
 
 	</header>
+
