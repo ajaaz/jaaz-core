@@ -1,3 +1,3 @@
-var app = new Vue({
+var vue = new Vue({
   el: '#vue-main'
 })
