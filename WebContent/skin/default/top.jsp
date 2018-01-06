@@ -49,10 +49,7 @@
 							<li><a href="#about">about</a></li>
 							<li><a href="#service">services</a></li>
 							<li><a href="#portfolio">portfolio</a></li>
-							<li><a href="#contact">contact</a></li>
-							<li class="hidden-sm hidden-xs">
-								<a href="#" id="ss"><i class="fa fa-search" aria-hidden="true"></i></a>
-							</li>
+							<li><a href="#contact">contact</a></li>							
 						</ul>
 
 					</div>					
