@@ -9,9 +9,7 @@
 							<ul>
 								<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
 								<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-vk" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+								<li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>								
 							</ul>
 
 						</div>
@@ -19,7 +17,7 @@
 
 					<div class="col-md-6">
 						<div class="top-right">
-							<p>Location:<span>Main Street 2020, City 3000</span></p>
+							Login | Register
 						</div>
 					</div>
 
@@ -35,7 +33,7 @@
 				<div class="container">
 
 					<div class="navbar-header">
-						<a href="index.html" class="navbar-brand">MyBiz</a>
+						<a href="index.html" class="navbar-brand">Jaazy.co</a>
 						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#ftheme">
 							<span class="sr-only">Toggle</span>
 							<span class="icon-bar"></span>
@@ -57,13 +55,7 @@
 							</li>
 						</ul>
 
-					</div>
-
-					<div class="search-form">
-						<form>
-							<input type="text" id="s" size="40" placeholder="Search..." />
-						</form>
-					</div>
+					</div>					
 
 				</div>
 			</nav>
