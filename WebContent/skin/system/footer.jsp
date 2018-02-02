@@ -9,7 +9,7 @@ var bus = new Vue();
 
 <jsp:include page="/vue/main.html"/>
 <jsp:include page="/vue/user/user.html"/>  
-<jsp:include page="/vue/user/windows.html"/>
+<jsp:include page="/vue/user/windows.jsp"/>
 
 
 <script src="/vue/user/user.js"></script>

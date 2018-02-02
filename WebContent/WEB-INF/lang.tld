@@ -1,0 +1,15 @@
+<taglib>
+   <tlib-version>1.0</tlib-version>
+   <jsp-version>2.0</jsp-version>
+   <short-name>Jaaz Portal Lang Tag</short-name>
+   
+   <tag>
+      <name>lang</name>
+      <tag-class>eu.jaaz.portal.web.taglib.LangTag</tag-class>
+      <body-content>empty</body-content>
+      <attribute>
+         <name>message</name>
+      </attribute>
+   
+   </tag>
+</taglib>
