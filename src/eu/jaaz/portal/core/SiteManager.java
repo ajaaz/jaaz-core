@@ -76,7 +76,61 @@ public class SiteManager {
 		for(Element dom: domainList)		
 			domains.put(dom.attributeValue("name").toLowerCase(), s);
 				
+		parseLanguages(e, s);
 		return s;
+	}
+	
+	void parseLanguages(Element e, Site s)
+	{
+		Element langs = e.element("languages");
+		
+		if(langs==null)
+		{
+			Debug.debug("Found no languages. Assuming English as default!");
+			
+			Language lang = new Language();
+			lang.setDefaultLanguge(true);
+			lang.setCode("en");
+			
+			s.addLangauge(lang);
+			return;
+		}
+		
+		List<Element> languages = langs.elements("lang");
+		
+		Language first = null;
+		boolean defaultSet = false;
+		
+		for(Element l: languages)
+		{
+			String code = l.attributeValue("code");
+			String def = l.attributeValue("default");
+			
+			Language langObj = new Language();
+			langObj.setCode(code);
+			if("true".equals(def))
+			{
+				defaultSet = true;
+				langObj.setDefaultLanguge(true);
+			}
+			else
+				langObj.setDefaultLanguge(false);
+		
+			if(first == null)
+				first = langObj;
+			s.addLangauge(langObj);
+			
+			String txt = "Addedd language "+langObj.getCode();
+			if(langObj.isDefaultLanguge())
+				txt +=" (default)";
+			
+			Debug.debug(txt);
+		}
+		
+		if(first != null && !defaultSet)
+		{
+			Debug.debug("Set language "+first.getCode()+" as default");
+		}
 	}
 	
 	public Site lookup(String domain)
