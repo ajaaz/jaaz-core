@@ -3,6 +3,10 @@
 <script>
 var bus = new Vue();
 </script>
+
+<script src="/js/locale/en"></script>
+<script src="/vue/locale/locale.js"></script>
+
 <jsp:include page="/vue/main.html"/>
 <jsp:include page="/vue/user/user.html"/>  
 <jsp:include page="/vue/user/windows.html"/>
