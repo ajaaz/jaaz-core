@@ -77,6 +77,8 @@ public class SiteManager {
 			domains.put(dom.attributeValue("name").toLowerCase(), s);
 				
 		parseLanguages(e, s);
+		
+		buildSiteInfo(s);
 		return s;
 	}
 	
@@ -142,5 +144,18 @@ public class SiteManager {
 		if(s==null)
 			return defaultSite;
 		return s;
+	}
+	
+	protected void buildSiteInfo(Site s)
+	{
+		SiteInfo info = new SiteInfo();
+		info.setId(s.getId());
+		
+		List<Language> langs = s.getLanguages();
+		for(Language l: langs)
+		{
+			info.addLangauge(l.getCode());
+		}
+		s.setInfo(info);
 	}
 }

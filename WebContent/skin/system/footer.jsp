@@ -6,14 +6,15 @@ var bus = new Vue();
 
 <script src="/js/locale/en"></script>
 <script src="/vue/locale/locale.js"></script>
+<script src="/js/info"></script>
+
 
 <jsp:include page="/vue/main.html"/>
 <jsp:include page="/vue/user/user.html"/>  
 <jsp:include page="/vue/user/windows.jsp"/>
-
-
 <script src="/vue/user/user.js"></script>
 <script src="/vue/user/windows.js"></script>
+<script src="/vue/locale/lang.js"></script>
 
 <user-windows></user-windows>
 

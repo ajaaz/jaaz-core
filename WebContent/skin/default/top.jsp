@@ -18,7 +18,11 @@
 					<div class="col-md-6">
 						<div class="top-right">
 							<user-menu></user-menu>
+						</div><br/>
+						<div class="top-right">
+							<lang-menu></lang-menu>
 						</div>
+					
 					</div>
 
 				</div>

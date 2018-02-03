@@ -8,6 +8,15 @@ public class Site {
 	String id;
 	String domain;
 	List<Language> languages = new LinkedList<Language>();
+	SiteInfo info;
+	
+	public SiteInfo getInfo() {
+		return info;
+	}
+
+	public void setInfo(SiteInfo info) {
+		this.info = info;
+	}
 
 	public void addLangauge(Language lang)
 	{
@@ -32,4 +41,8 @@ public class Site {
 		return id;
 	}
 	
+	public List<Language> getLanguages()
+	{
+		return languages;
+	}
 }
