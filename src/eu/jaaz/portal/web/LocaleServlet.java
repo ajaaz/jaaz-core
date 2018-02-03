@@ -12,6 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
+import eu.jaaz.portal.core.Site;
+import eu.jaaz.portal.core.SiteManager;
+import eu.jaaz.portal.web.taglib.LangLoader;
+
 /**
  * Servlet implementation class LocaleServlet
  */
@@ -31,16 +35,18 @@ public class LocaleServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType( "application/javascript; charset=utf-8" );
+		
+		String lang = (String)request.getSession().getAttribute("lang");
 		// TODO Auto-generated method stub
 		Writer out = response.getWriter();
 		
-		Properties lang = new Properties();
-		lang.load(getClass().getResourceAsStream("/lang/web.properties"));
-		
+		Properties locale = LangLoader.getWebLocale(lang);
 		out.append("var jLang = ");
 		
 		Gson gsonObject = new Gson();		
-		out.append(gsonObject.toJson(lang));
+		out.append(gsonObject.toJson(locale));
 		
 	}
 

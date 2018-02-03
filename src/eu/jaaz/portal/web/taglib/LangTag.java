@@ -7,16 +7,10 @@ import java.util.Properties;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
+import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 public class LangTag extends SimpleTagSupport {
-
-	
-	public LangTag()
-	{
-		LangLoader.init();
-	}
-	
 	String message;
 	
 	public String getMessage() {
@@ -28,16 +22,20 @@ public class LangTag extends SimpleTagSupport {
 	}
 
 	public void doTag() throws JspException, IOException {
-	      JspWriter out = getJspContext().getOut();
+	    PageContext context = (PageContext)getJspContext();
+	    
+		String lang = (String) context.getAttribute("lang", context.SESSION_SCOPE);
+
+		  JspWriter out = getJspContext().getOut();
 	      
-	      Properties p = LangLoader.getWebLocale("en");
+	      Properties p = LangLoader.getWebLocale(lang);
 	      String txt = p.getProperty(message);
 	      if(txt != null)
 	      {
 	    	   out.print(txt);
 	    	   return;
 	      }
-	      p = LangLoader.getLocale("en");
+	      p = LangLoader.getLocale(lang);
 	      txt = p.getProperty(message);
 	      if(txt == null)
 	    	  out.print(message);

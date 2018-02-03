@@ -85,6 +85,7 @@ public class SiteManager {
 	void parseLanguages(Element e, Site s)
 	{
 		Element langs = e.element("languages");
+		Language defaultLanguage = null;
 		
 		if(langs==null)
 		{
@@ -114,6 +115,7 @@ public class SiteManager {
 			{
 				defaultSet = true;
 				langObj.setDefaultLanguge(true);
+				defaultLanguage = langObj;
 			}
 			else
 				langObj.setDefaultLanguge(false);
@@ -131,8 +133,11 @@ public class SiteManager {
 		
 		if(first != null && !defaultSet)
 		{
+			defaultLanguage = first;
 			Debug.debug("Set language "+first.getCode()+" as default");
 		}
+		
+		s.setDefaultLanguage(defaultLanguage);
 	}
 	
 	public Site lookup(String domain)

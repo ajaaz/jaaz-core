@@ -1,5 +1,7 @@
 package eu.jaaz.portal.web.taglib;
 
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -9,46 +11,55 @@ public class LangLoader {
 	static Map<String, Properties> locales = new HashMap<String, Properties>();
 	static Map<String, Properties> webLocales = new HashMap<String, Properties>();
 	
-	static boolean initialized = false;
 	
-	public synchronized static  void init()
+	
+	public synchronized static  void init(String lang)
 	{
-		if(initialized )
+		if(lang == null)
+			lang = "en";
+		if(locales.containsKey(lang))
 			return;
 		
 		Properties defLocale = new Properties();
 		try {
-			defLocale.load(LangTag.class.getResourceAsStream("/lang/server.properties"));
+			if(lang.equals("en"))				
+				defLocale.load(new InputStreamReader(LangTag.class.getResourceAsStream("/lang/server.properties"), Charset.forName("UTF-8")));
+			else
+				defLocale.load(new InputStreamReader(LangTag.class.getResourceAsStream("/lang/server."+lang+".properties"), Charset.forName("UTF-8")));
 		}
 		catch(Exception e)
 		{
-			System.err.println("Unable to load default server locales!");
+			System.err.println("Unable to load default server locales for lang "+lang+"!");
 			return;
 		}
-		locales.put("en", defLocale);
+		locales.put(lang, defLocale);
 		
 
 		Properties defWebLocale = new Properties();
 		try {
-			defWebLocale.load(LangTag.class.getResourceAsStream("/lang/web.properties"));
+			if(lang.equals("en"))
+				defWebLocale.load(new InputStreamReader(LangTag.class.getResourceAsStream("/lang/web.properties"), Charset.forName("UTF-8")));
+			else
+				defWebLocale.load(new InputStreamReader(LangTag.class.getResourceAsStream("/lang/web."+lang+".properties"), Charset.forName("UTF-8")));
 		}
 		catch(Exception e)
 		{
-			System.err.println("Unable to load default web locales!");
+			System.err.println("Unable to load default web locales for lang "+lang+"!");
 			return;
 		}
-		webLocales.put("en", defWebLocale);	
+		webLocales.put(lang, defWebLocale);	
 		
-		initialized = true;
 	}
 	
 	public static Properties getWebLocale(String lang)
 	{
-		return webLocales.get("en");
+		init(lang);
+		return webLocales.get(lang);
 	}
 	
 	public static Properties getLocale(String lang)
 	{
-		return locales.get("en");
+		init(lang);
+		return locales.get(lang);
 	}
 }

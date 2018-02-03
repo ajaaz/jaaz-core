@@ -37,10 +37,21 @@ public class RootServlet extends HttpServlet {
 		}
 		if(url.startsWith("/portal"))
 		{
+			//request.setCharacterEncoding("UTF-8");
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType( "text/html; charset=utf-8" );
+			
 			SiteManager manager = SiteManager.getSiteManager(request.getSession().getServletContext());
 			Site site = manager.lookup(request.getServerName());
 			request.setAttribute("site", site);
 			
+			if(request.getParameter("lang")!=null)
+				request.getSession().setAttribute("lang", request.getParameter("lang"));
+			
+			if(request.getSession().getAttribute("lang")==null)
+				request.setAttribute("lang", site.getDefaultLanguage().getCode());
+			
+			System.out.println("Lang: "+request.getSession().getAttribute("lang"));
 			if(!"DEV".equals(System.getProperty("jaaz.mode"))&&!request.getServerName().equals(site.getDomain()))
 			{
 				String redirect = request.getScheme()+"://"+site.getDomain()+"/"+

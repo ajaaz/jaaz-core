@@ -9,7 +9,20 @@ public class Site {
 	String domain;
 	List<Language> languages = new LinkedList<Language>();
 	SiteInfo info;
+	Language defaultLanguage;
 	
+	public Language getDefaultLanguage() {
+		return defaultLanguage;
+	}
+
+	public void setDefaultLanguage(Language defaultLanguage) {
+		this.defaultLanguage = defaultLanguage;
+	}
+
+	public void setLanguages(List<Language> languages) {
+		this.languages = languages;
+	}
+
 	public SiteInfo getInfo() {
 		return info;
 	}
